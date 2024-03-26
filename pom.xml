@@ -81,6 +81,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.agile</groupId>
+            <artifactId>AgileAPI</artifactId>
+            <version>9.3.6</version>
+        </dependency>
     </dependencies>
 
     <build>

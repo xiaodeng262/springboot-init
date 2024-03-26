@@ -1,6 +1,7 @@
 package com.xiaodeng.exception;
 
 
+import com.agile.api.APIException;
 import com.xiaodeng.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 全局异常处理器
- *
  * @author xiaodeng
  */
 @Slf4j
@@ -21,6 +20,24 @@ public class GlobalExceptionHandler {
         log.error("", e);
         return Result.error(code, e.getMessage());
     }
+
+    @ResponseBody
+    @ExceptionHandler(RuntimeException.class)
+    public Result<?> runtimeException(RuntimeException e) {
+        log.error("", e);
+        int code = e.hashCode();
+        return Result.error(code, e.getMessage());
+    }
+
+
+    @ResponseBody
+    @ExceptionHandler(APIException.class)
+    public Result<?> runtimeException(APIException e) {
+        log.error("", e);
+        int code = e.hashCode();
+        return Result.error(code, "AgileAPI调用异常：" + e.getMessage());
+    }
+
 
     @ResponseBody
     @ExceptionHandler(BusinessException.class)

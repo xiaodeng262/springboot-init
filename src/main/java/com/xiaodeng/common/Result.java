@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 统一结果返回
  *
- * @author xiaodeng
+ * @author yu
  */
 @Data
 public class Result<T> implements Serializable {
@@ -58,11 +58,6 @@ public class Result<T> implements Serializable {
         this.data = data;
     }
 
-    public Result() {
-        this.code = ResultCodeEnum.SUCCESS.getCode();
-        this.message = ResultCodeEnum.SUCCESS.getMessage();
-    }
-
     public Result(HttpHeaders httpHeaders, T data) {
         this.httpHeaders = httpHeaders;
         this.data = data;
@@ -74,13 +69,10 @@ public class Result<T> implements Serializable {
     }
 
 
+
+
     public static <T> Result<T> success(T data) {
         return new Result<>(data);
     }
-
-    public static <T> Result<T> success() {
-        return new Result<>();
-    }
-
 
 }
